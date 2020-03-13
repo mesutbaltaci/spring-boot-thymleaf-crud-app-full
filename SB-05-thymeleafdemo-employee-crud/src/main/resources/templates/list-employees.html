@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html
+	xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>List User</title>
+  </head>
+<body>
+
+	<div class="container"> 
+
+	<h3>Employee Directory</h3>
+	
+	<a th:href="@{/employees/showFormForAdd}" class="btn btn-success btn-sm mb-3" role="button"> Add Employee </a>
+	<table class="table table-bordered table-striped">
+		<thead class="thead-dark">
+			<th> First Name </th>
+			<th> Last Name </th>
+			<th> Email </th>
+			<th> Action</th>
+		</thead>
+		<tbody>
+			<tr th:each="e : ${employees}">
+				<td th:text="${e.firstName}" />
+				<td th:text="${e.lastName}" />
+				<td th:text="${e.email}" />
+				<td> <a th:href="@{/employees/showFormUpdate(employeeId=${e.id})}" class="btn btn-secondary btn-sm mb-3"  >Update</a> 
+				<a th:href="@{/employees/deleteEmployee(employeeId=${e.id})}" class="btn btn-danger btn-sm mb-3" 
+				onclick="if(!confirm('Are you sure to delete the user?')) return false">Delete</a></td>
+						
+			</tr>
+		</tbody>
+	</table>
+		
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination justify-content-center">
+		    <li class="page-item disabled">
+		      <a class="page-link" href="#" tabindex="-1">Previous</a>
+		    </li>
+		    <li class="page-item"><a class="page-link" href="#">1</a></li>
+		    <li class="page-item"><a class="page-link" href="#">2</a></li>
+		    <li class="page-item"><a class="page-link" href="#">3</a></li>
+		    <li class="page-item">
+		      <a class="page-link" href="#">Next</a>
+		    </li>
+		  </ul>
+		</nav>
+
+</div>
+</body>
+</html>
